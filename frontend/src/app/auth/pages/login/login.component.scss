@@ -1,0 +1,23 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--surface-ground);
+}
+
+.field {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+}
+
+:host ::ng-deep {
+  .p-password {
+    width: 100%;
+  }
+} 

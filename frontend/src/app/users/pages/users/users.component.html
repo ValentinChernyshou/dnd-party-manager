@@ -1,0 +1,49 @@
+<h1>Users</h1>
+<p-table [value]="(users$ | async) || []">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Name</th>
+      <th>Surname</th>
+      @if (isAdmin) {
+        <th>Actions</th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role | titlecase }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
+      @if (isAdmin) {
+        <td>
+          <button pButton (click)="openEditDialog(user)">Edit</button>
+        </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="showDialog" [style]="{width: '450px'}" header="Edit User" [modal]="true">
+  <div class="p-fluid" style="padding-top: 15px; display: flex; flex-direction: column; gap: 10px">
+    @if(selectedUser) {
+      <p-floatlabel variant="on">
+        <input pInputText id="on_label" [(ngModel)]="selectedUser.name" autocomplete="off" style="width: 100%" />
+        <label for="on_label">Name</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="on_label" [(ngModel)]="selectedUser.surname" autocomplete="off" style="width: 100%" />
+        <label for="on_label">Surname</label>
+      </p-floatlabel>
+    }
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton (click)="saveUser()">Save</button>
+    <button pButton (click)="deleteUser()" class="p-button-danger">Delete</button>
+    <button pButton (click)="showDialog = false" class="p-button-secondary">Cancel</button>
+  </ng-template>
+</p-dialog>

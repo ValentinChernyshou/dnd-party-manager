@@ -1,0 +1,59 @@
+<div class="login-container">
+  <p-card [header]="isLoginMode ? 'Login' : 'Sign Up'" [style]="{ width: '360px' }">
+    <form [formGroup]="loginForm">
+      <div class="field w-full">
+        <label for="email">Email</label>
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-user"></i>
+          <input
+            id="email"
+            type="text"
+            pInputText
+            formControlName="email"
+            class="w-full"
+            [style]="{ width: '100%' }"
+            placeholder="Email address">
+        </span>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <small class="p-error">
+            Please enter a valid email
+          </small>
+        }
+      </div>
+
+      <div class="field w-full">
+        <label for="password">Password</label>
+        <p-password
+          id="password"
+          formControlName="password"
+          [toggleMask]="true"
+          [feedback]="false"
+          [style]="{ width: '100%' }"
+          placeholder="Enter your password">
+        </p-password>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <small class="p-error">
+            Password is required
+          </small>
+        }
+      </div>
+
+      <div class="field flex gap-2 w-full">
+        <p-button
+          (click)="isLoginMode ? login() : signUp()"
+          type="submit"
+          [label]="isLoginMode ? 'Sign In' : 'Sign Up'"
+          [loading]="loading$ | async"
+          [disabled]="!loginForm.valid || (loading$ | async)"
+          styleClass="w-full">
+        </p-button>
+      </div>
+
+      <div class="text-center mt-3">
+        <a href="#" class="text-primary hover:underline" (click)="$event.preventDefault(); toggleMode()">
+          {{ isLoginMode ? 'Need an account? Sign Up!' : 'Already a user? Log in' }}
+        </a>
+      </div>
+    </form>
+  </p-card>
+</div>

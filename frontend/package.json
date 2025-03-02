@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "nx build frontend --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@angular/animations": "^19.2.0",
+    "@angular/cdk": "^19.2.1",
+    "@ngrx/effects": "^19.0.1",
+    "@ngrx/store": "^19.0.1",
+    "@ngrx/store-devtools": "^19.0.1",
+    "@primeng/themes": "^19.0.9",
+    "primeicons": "^7.0.0",
+    "primeng": "^19.0.9"
+  }
+}
